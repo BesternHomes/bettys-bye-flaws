@@ -1,0 +1,870 @@
+/* ==========================================================================
+   Bettys Bye Flaws - Premium Beauty Salon
+   Style: Apple-inspired, Minimal, Elegant, Feminine
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Variables & Reset
+   -------------------------------------------------------------------------- */
+:root {
+    /* Color Palette */
+    --primary: #d4a3a3; /* Soft Blush Pink */
+    --primary-dark: #c08b8b;
+    --accent: #d4af37; /* Muted Gold */
+    
+    --text-main: #222222; /* Deep Charcoal (Softer than stark black) */
+    --text-muted: #666666;
+    
+    --bg-main: #ffffff;
+    --bg-light: #faf9f8; /* Very soft off-white/cream */
+    --bg-footer: #222222;
+    
+    --white: #ffffff;
+    --whatsapp-green: #25D366;
+    
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Spacing & Layout */
+    --container-width: 1200px;
+    --section-padding: 80px 0;
+    
+    /* Border Radius & Shadows */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 50px;
+    
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Apple-like easing */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-main);
+    background-color: var(--bg-main);
+    line-height: 1.6;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. Typography & Utility Classes
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-main);
+}
+
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.section {
+    padding: var(--section-padding);
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+/* Section Headers */
+.section-header {
+    margin-bottom: 48px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.section-subtitle {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: rgba(212, 163, 163, 0.15);
+    color: var(--primary-dark);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--radius-pill);
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   3. Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: var(--radius-pill);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition-smooth);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid #e0e0e0;
+}
+
+.btn-outline:hover {
+    border-color: var(--text-main);
+}
+
+.btn-text {
+    background: none;
+    color: var(--primary-dark);
+    padding: 0;
+    font-weight: 500;
+    gap: 8px;
+}
+
+.btn-text:hover {
+    gap: 12px; /* Moves arrow slightly */
+}
+
+.btn-large {
+    padding: 16px 36px;
+    font-size: 1.125rem;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   4. Floating WhatsApp
+   -------------------------------------------------------------------------- */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--whatsapp-green);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    transition: var(--transition-smooth);
+    animation: pulse 2s infinite;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* --------------------------------------------------------------------------
+   5. Header & Navigation (Glassmorphism)
+   -------------------------------------------------------------------------- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 999;
+    padding: 16px 0;
+    transition: var(--transition-fast);
+}
+
+.header.scrolled {
+    padding: 12px 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.logo span {
+    color: var(--primary);
+    font-style: italic;
+}
+
+.nav-list {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-link {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    font-weight: 400;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero Section
+   -------------------------------------------------------------------------- */
+.hero {
+    min-height: 100vh;
+    padding-top: 100px; /* Offset for fixed header */
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bg-light) 0%, #fff 100%);
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: 24px;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 90%;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 4/5;
+    background-color: #f0f0f0; /* Placeholder color */
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   7. About Section (Editorial Layout)
+   -------------------------------------------------------------------------- */
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-images {
+    position: relative;
+}
+
+.img-main {
+    width: 80%;
+    border-radius: var(--radius-lg);
+    background-color: #eee;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+}
+
+.img-accent {
+    position: absolute;
+    bottom: -40px;
+    right: 0;
+    width: 55%;
+    border-radius: var(--radius-lg);
+    border: 10px solid var(--white);
+    box-shadow: var(--shadow-lg);
+    background-color: #ddd;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.about-content p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    font-size: 1.125rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. Services Section (Glassy/Rounded Cards)
+   -------------------------------------------------------------------------- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.service-card {
+    background: var(--white);
+    padding: 40px 32px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.service-icon {
+    font-size: 40px;
+    color: var(--primary);
+    margin-bottom: 24px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
+.service-card p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.service-link {
+    font-weight: 500;
+    color: var(--text-main);
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+}
+
+.service-card:hover .service-link {
+    border-bottom-color: var(--primary);
+    color: var(--primary);
+}
+
+/* --------------------------------------------------------------------------
+   9. Why Choose Us
+   -------------------------------------------------------------------------- */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    text-align: center;
+}
+
+.feature-item {
+    padding: 32px;
+}
+
+.feature-icon {
+    font-size: 48px;
+    color: var(--primary);
+    margin-bottom: 24px;
+}
+
+.feature-item h4 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+}
+
+.feature-item p {
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   10. Gallery
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.gallery-img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    transition: var(--transition-smooth);
+    background-color: #eee;
+}
+
+.gallery-img:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-md);
+}
+
+/* Specific sizing for masonry look if desired, or keep equal squares */
+.gallery-grid img:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+
+/* --------------------------------------------------------------------------
+   11. Reviews
+   -------------------------------------------------------------------------- */
+.reviews-carousel {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding-bottom: 24px;
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+
+.reviews-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.review-card {
+    min-width: 350px;
+    background: var(--bg-light);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.stars {
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+.review-text {
+    font-size: 1.125rem;
+    font-style: italic;
+    margin-bottom: 24px;
+}
+
+.review-author {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--primary-dark);
+}
+
+/* --------------------------------------------------------------------------
+   12. FAQ (Accordion)
+   -------------------------------------------------------------------------- */
+.faq-container {
+    max-width: 800px;
+}
+
+.accordion-item {
+    background: var(--white);
+    border: 1px solid #eee;
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    background: none;
+    border: none;
+    font-size: 1.125rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--text-main);
+    cursor: pointer;
+    text-align: left;
+}
+
+.accordion-header i {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    color: var(--primary);
+}
+
+.accordion-header.active i {
+    transform: rotate(45deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.accordion-content p {
+    padding: 0 24px 24px;
+    color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   13. Contact
+   -------------------------------------------------------------------------- */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.contact-desc {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    font-size: 1.125rem;
+}
+
+.contact-list i {
+    font-size: 24px;
+    color: var(--primary);
+}
+
+.opening-hours {
+    margin-top: 48px;
+    padding: 32px;
+    background: var(--bg-light);
+    border-radius: var(--radius-md);
+}
+
+.opening-hours h3 {
+    margin-bottom: 16px;
+}
+
+.opening-hours p {
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.contact-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 200px;
+    background: #e8e8e8;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.map-overlay i {
+    font-size: 32px;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.contact-form {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.contact-form h3 {
+    margin-bottom: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(212, 163, 163, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   14. Footer
+   -------------------------------------------------------------------------- */
+.footer {
+    background-color: var(--bg-footer);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 80px 0 24px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.footer-brand .logo {
+    color: var(--white);
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+.footer h4 {
+    color: var(--white);
+    font-size: 1.125rem;
+    margin-bottom: 24px;
+    font-weight: 500;
+}
+
+.footer-links ul li {
+    margin-bottom: 12px;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+.social-icons {
+    display: flex;
+    gap: 16px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--white);
+}
+
+.social-icons a:hover {
+    background: var(--primary);
+    transform: translateY(-4px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.875rem;
+}
+
+/* --------------------------------------------------------------------------
+   15. Responsive Design (Media Queries)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .hero-title { font-size: 3.5rem; }
+    .about-container { gap: 40px; }
+    .contact-container { gap: 40px; }
+}
+
+@media (max-width: 768px) {
+    /* Header/Nav */
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--white);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition-smooth);
+    }
+    .nav-menu.active { left: 0; }
+    .nav-list {
+        flex-direction: column;
+        text-align: center;
+        gap: 32px;
+    }
+    .nav-link { font-size: 1.25rem; }
+    .nav-btn { display: none; }
+    .mobile-toggle { display: block; }
+    
+    /* Utility */
+    .section { padding: 60px 0; }
+    .section-title { font-size: 2rem; }
+    
+    /* Layout Adjustments */
+    .hero-container,
+    .about-container,
+    .contact-container,
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero {
+        padding-top: 120px;
+        text-align: center;
+    }
+    .hero-subtitle {
+        margin: 0 auto 32px;
+    }
+    .hero-buttons {
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .about-images {
+        margin-bottom: 60px;
+        padding-right: 20px; /* space for accent image */
+    }
+    .img-main { width: 90%; }
+    .img-accent { width: 60%; bottom: -30px; }
+    
+    .features-grid { grid-template-columns: 1fr; gap: 24px; }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gallery-grid img:nth-child(1) {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    .d-mobile-none { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   16. Animation Classes (For JS Intersection Observer)
+   -------------------------------------------------------------------------- */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}
